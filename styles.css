@@ -1,0 +1,125 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column; /* 讓內容垂直排列 */
+    align-items: center; /* 水平居中 */
+    justify-content: flex-start; /* 從頂部開始排列 */
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+
+/* 控制按鈕和選單的外框 */
+.controls-container {
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    gap: 20px; /* 控制區的內部間距 */
+    margin-bottom: 20px; /* 與卡片容器的距離 */
+}
+
+/* 控制按鈕組 */
+.button-container {
+    display: flex;
+    gap: 10px; /* 按鈕之間的間距 */
+    margin-right: 20px; /* 按鈕與選單之間的間距 */
+}
+
+/* 選擇主題和網格大小的下拉選單 */
+.selector-container,
+.grid-selector-container {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.timer-container {
+    margin-bottom: 20px;
+    font-size: 28px; /* 設置字體大小為 28px */
+    font-weight: bold;
+}
+
+/* 卡片容器 */
+.card-container {
+    display: grid;
+    gap: 10px;
+    justify-content: center; /* 水平居中 */
+    margin: 20px auto; /* 上下居中 */
+    perspective: 1000px;
+    width: fit-content; /* 根據內容自適應寬度 */
+}
+
+/* 定義卡片的過渡效果 */
+.card {
+    width: 150px;
+    height: 200px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s, opacity 0.5s ease-out; /* 增加 opacity 的過渡效果 */
+    cursor: pointer;
+}
+
+/* 調整不同網格大小下的卡片尺寸 */
+.card-container[data-grid="6x6"] .card {
+    width: 100px; /* 小一點的卡片大小 */
+    height: 130px;
+}
+
+.card-container[data-grid="4x4"] .card {
+    width: 130px; /* 中等卡片大小 */
+    height: 170px;
+}
+
+.card-container[data-grid="2x2"] .card {
+    width: 150px; /* 原本的卡片大小 */
+    height: 200px;
+}
+
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+.card-front {
+    background-color: #fff;
+}
+
+.card-back {
+    background-color: #fff;
+    transform: rotateY(180deg);
+}
+
+.flipped {
+    transform: rotateY(180deg);
+}
+
+/* 選擇倒數秒數的下拉選單 */
+.timer-selector-container {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.controls-container label,
+.controls-container select,
+.controls-container button {
+    font-size: 18px; /* 設置字體大小為 18px */
+}
+
+.hidden {
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+    pointer-events: none; /* 禁止隱藏卡片的互動 */
+}
